@@ -41,3 +41,28 @@ def ticker_inputs(inputID, pickerID, MONTH_CUTTOFF):
                 #end_date = currentDate
             )
             ])
+
+# combine Dash Bootstrap components Card and Alert. 
+# Bootstrap’s cards provide a flexible content container and allow a 
+# fair amount of customization. 
+# Alert is used to easily add color and more style if desired.
+def make_card(alert_message, color, cardbody, style_dict = None):
+    
+    return dbc.Card(
+        [dbc.Alert(alert_message, color=color), dbc.CardBody(cardbody)],
+        style = style_dict
+        )
+
+# used to build the price chart Accordion
+def make_item(button, cardbody, i):
+    # This function makes the accordion items 
+    return dbc.Card([
+        dbc.CardHeader(
+            html.H2(
+                dbc.Button(
+                    button,
+                    color="link",
+                    id=f"group-{i}-toggle"))),
+        dbc.Collapse(
+            dbc.CardBody(cardbody),
+            id=f"collapse-{i}")])
